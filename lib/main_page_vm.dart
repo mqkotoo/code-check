@@ -11,9 +11,9 @@ FutureProvider.autoDispose.family<RepositoryData,String>((ref,repositoryData) as
 
   Logic logic  = ref.watch(_logicProvider);
 
-  // if(!logic.willProceed(repositoryData)) {
-  //   return RepositoryData.empty;
-  // }
+  if(!logic.willProceed(repositoryData)) {
+    return RepositoryData.empty;
+  }
 
   return await logic.getRepositoryData(repositoryData);
 });

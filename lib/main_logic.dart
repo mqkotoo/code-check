@@ -28,5 +28,4 @@ class Logic{
   bool willProceed(String repositoryData) {
     return repositoryData.isNotEmpty;
   }
-
 }

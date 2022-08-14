@@ -27,11 +27,14 @@ class _MainPageState extends ConsumerState<MainPage> {
   @override
   Widget build(BuildContext context) {
 
+    //リポジトリのデータ取得
     final data = _vm.repositoryDataWithFamily(_vm.repositoryData);
+
+    bool hasRepositoryData;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("title"),
+        title: Text("GitHub Searcher"),
       ),
       body: Center(
         child: Column(
@@ -41,9 +44,29 @@ class _MainPageState extends ConsumerState<MainPage> {
               controller: _searchTextController,
             ),
             ElevatedButton(onPressed: () =>  _vm.onRepositoryDataChanged(_searchTextController.text),
-              child: Text('検索'),
+              child: Text('Search'),
             ),
             // Text("検索結果数" + data.value!.total_count.toString()),
+            Divider(thickness: 0.5,color: Colors.black),
+
+            (() {
+              if (data.value != null && data.value!.total_count != 0) {
+                return Padding(
+                  padding: const EdgeInsets.only(right: 10),
+                  child: Align(
+                    alignment: AlignmentDirectional.centerEnd,
+                    child: Text(
+                        "result: ${data.value!.total_count}"),
+                  ),
+                );
+              } if(data.value != null && data.value!.total_count == 0 ){
+                return const SizedBox.shrink();
+              }
+              else {
+                return const SizedBox.shrink();
+              }
+            })(),
+
             Expanded(
               child: data.when(
                 data: (data) => ListView.separated(
@@ -60,14 +83,19 @@ class _MainPageState extends ConsumerState<MainPage> {
                             style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
                           ),
                         ),
-                        Text(
-                          data.items[index].description ?? "No description",
-                          style: TextStyle(color: Colors.black87),
+                        Padding(
+                          padding: EdgeInsets.only(bottom : 5.0),
+                          child: Text(
+                            data.items[index].description ?? "No description",
+                            style: TextStyle(color: Colors.black87),
+                          ),
                         ),
                         Row(
                           children: [
-                            Text(data.items[index].language ?? ""),
-                            Text(data.items[index].stargazers_count.toString()),
+                            Text("🌐"),
+                            Text(data.items[index].language ?? "なし"),
+                            SizedBox(width: 10),
+                            Text("⭐️${data.items[index].stargazers_count}"),
                           ],
                         )
                       ],

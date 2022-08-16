@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
+import 'package:numeral/numeral.dart';
 
 import '../main_page_vm.dart';
 import 'next_page.dart';
@@ -59,7 +61,7 @@ class _MainPageState extends ConsumerState<MainPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding: const EdgeInsets.symmetric(vertical: 15.0,horizontal: 20),
               child: TextFormField(
                 decoration: InputDecoration(
                   prefixIcon: Icon(
@@ -89,16 +91,22 @@ class _MainPageState extends ConsumerState<MainPage> {
                 onFieldSubmitted: (text) => _vm.onRepositoryDataChanged(text),
               ),
             ),
-            // Text("検索結果数" + data.value!.total_count.toString()),
-            Divider(thickness: 0.5, color: Colors.black12),
-
+            Divider(
+                thickness: 0.5,
+                color:
+                platformBrightness == Brightness.dark
+                    ? Color(0xff777777)
+                    : Colors.black12,
+            ),
             (() {
               if (data.value != null && data.value!.total_count != 0) {
+                //resultをカンマ区切りで表示
+                String total_count = NumberFormat('#,##0').format(data.value!.total_count);
                 return Padding(
                   padding: const EdgeInsets.only(right: 10),
                   child: Align(
                     alignment: AlignmentDirectional.centerEnd,
-                    child: Text("result: ${data.value!.total_count}"),
+                    child: Text("result: ${total_count}"),
                   ),
                 );
               }
@@ -119,9 +127,39 @@ class _MainPageState extends ConsumerState<MainPage> {
               child: data.when(
                 data: (data) => ListView.separated(
                   itemCount: data.items.length,
-                  itemBuilder: (context, index) => Padding(
-                    padding: EdgeInsets.symmetric(vertical: 3, horizontal: 10),
-                    child: GestureDetector(
+                  itemBuilder: (context, index) =>ListTile(
+                    title: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(bottom:7.0),
+                          child: Text(
+                              data.items[index].full_name,
+                            style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ],
+                    ),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 7.0),
+                          child: Text(
+                            data.items[index].description ?? "No description",
+                            style: TextStyle(
+                              color:
+                              platformBrightness == Brightness.dark
+                              // ? Color(0xff222F22)
+                                  ? Color(0xffBBBBBB)
+                                  : Colors.black87,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 3,
+                          ),
+                        ),
+                      ],
+                    ),
                       onTap: () {
                         _vm.onListTapped(data.items[index]);
                         Navigator.of(context).push(
@@ -131,47 +169,10 @@ class _MainPageState extends ConsumerState<MainPage> {
                             },
                           ),
                         );
-                      },
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(bottom: 7),
-                            child: Text(
-                              data.items[index].full_name,
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(bottom: 5.0),
-                            child: Text(
-                              data.items[index].description ?? "No description",
-                              style: TextStyle(
-                                  color:
-                                  platformBrightness == Brightness.dark
-                                  // ? Color(0xff222F22)
-                                      ? Color(0xffBBBBBB)
-                                      : Colors.black87,
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 3,
-                            ),
-                          ),
-                          Row(
-                            children: [
-                              Text("⭐️${data.items[index].stargazers_count}"),
-                              SizedBox(width: 10),
-                              Text("🌐"),
-                              Text(data.items[index].language ?? "なし"),
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
+                      }
                   ),
                   separatorBuilder: (context, index) =>
-                      Divider(color: Colors.black),
+                  Divider(color: Color(0xffBBBBBB),)
                 ),
                 error: (error, stack) => Text(error.toString()),
                 loading: () => const CircularProgressIndicator(),

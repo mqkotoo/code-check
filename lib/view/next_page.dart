@@ -54,46 +54,56 @@ class DetailPage extends ConsumerWidget {
               ? Color(0xff1A1C19)
               : Color(0xffFCFDF6),
         ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20.0,horizontal: 25),
-          child: Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                ClipOval(
+        body: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top:20.0),
+                child: ClipOval(
                   child: Image.network(
                     data.owner.avatar_url,
                     width: size.width * 0.25,
                     height: size.width * 0.25,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Text(data.full_name,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-                ),
-                Text(
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                child: Text(data.full_name,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(25,0,25,15),
+                child: Text(
                   data.description ?? "No description",
                   style: TextStyle(
                       color:
                       platformBrightness == Brightness.dark
-                      // ? Color(0xff222F22)
                           ? Color(0xffBBBBBB)
                           : Colors.black87,
                   ),
                 ),
-                Text(data.language ?? "No programing language"),
-                Text("star : " + stars_count),
-                Text("watch : " + watchers_count),
-                Text("fork : " + forks_count),
-                Text("issues : " + issues_count),
-
-                Icon(Icons.star,color: Colors.yellowAccent),
-                Icon(Icons.language,color: Colors.blueAccent),
-                Icon(Icons.remove_red_eye_outlined,color: Colors.brown),
-                Icon(Icons.fork_right_sharp,color: Colors.purpleAccent),
-                Icon(Icons.info_outline,color: Colors.greenAccent)
-              ],
-            ),
+              ),
+              Divider(
+                thickness: 0.5,
+                color:
+                platformBrightness == Brightness.dark
+                    ? Color(0xff777777)
+                    : Colors.black12,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 25),
+                child: Column(
+                  children: [
+                    detailElement(icon: Icons.language, elementLabel: "Language", element: data.language ?? "No Programing language", iconBackgroundColor: Colors.blueAccent, iconColor: Colors.white,),
+                    detailElement(icon: Icons.star_border, elementLabel: "Star", element: stars_count, iconBackgroundColor: Colors.yellowAccent, iconColor: Colors.black87,),
+                    detailElement(icon: Icons.remove_red_eye_outlined, elementLabel: "Watch", element: watchers_count, iconBackgroundColor: Colors.brown, iconColor: Colors.white,),
+                    detailElement(icon: Icons.fork_right_sharp, elementLabel: "Fork", element: forks_count, iconBackgroundColor: Colors.purpleAccent, iconColor: Colors.white,),
+                    detailElement(icon: Icons.info_outline, elementLabel: "Issue", element: issues_count, iconBackgroundColor: Colors.greenAccent, iconColor: Colors.white,),
+                  ],
+                ),
+              ),
+            ],
           ),
         )
     );
@@ -102,24 +112,41 @@ class DetailPage extends ConsumerWidget {
 
 
 
-class CountText extends StatelessWidget {
-  const CountText({
+class detailElement extends StatelessWidget {
+  const detailElement({
     Key? key,
-    required this.text,
-    required this.data,
-    required this.fontsize,
+    required this.icon,
+    required this.elementLabel,
+    required this.element,
+    required this.iconBackgroundColor,
+    required this.iconColor
   }) : super(key: key);
 
-  final String? data;
-  final String? text;
-  final double? fontsize;
+  final IconData icon;
+  final String elementLabel;
+  final String element;
+  final Color iconBackgroundColor;
+  final Color iconColor;
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      "$text: $data",
-      textAlign: TextAlign.start,
-      style: TextStyle(fontSize: fontsize),
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10.0),
+      child: Row(
+        children: [
+          CircleAvatar(
+            backgroundColor: iconBackgroundColor,
+              child: Icon(icon,size: 25,color: iconColor),
+          ),
+          SizedBox(width: 14),
+          Text(elementLabel,style: TextStyle(fontSize: 17)),
+          Spacer(),
+          Text(
+            element,
+            style: TextStyle(fontSize: 17),
+          )
+        ],
+      ),
     );
   }
 }

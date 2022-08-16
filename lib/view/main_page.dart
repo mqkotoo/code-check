@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:numeral/numeral.dart';
-
 import '../main_page_vm.dart';
 import 'next_page.dart';
 

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import '../main_page_vm.dart';
-import 'next_page.dart';
+import '../widget/main_page_widget.dart';
+
 
 class MainPage extends ConsumerStatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -13,9 +14,6 @@ class MainPage extends ConsumerStatefulWidget {
 
 class _MainPageState extends ConsumerState<MainPage> {
   MainPageVM _vm = MainPageVM();
-
-  //検索内容保持するため
-  final TextEditingController _searchTextController = TextEditingController();
 
   @override
   void initState() {
@@ -32,7 +30,6 @@ class _MainPageState extends ConsumerState<MainPage> {
     final platformBrightness = MediaQuery.platformBrightnessOf(context);
 
     return Scaffold(
-      // extendBodyBehindAppBar: true,
       backgroundColor:
       platformBrightness == Brightness.dark
           ? Color(0xff1A1C19)
@@ -58,37 +55,7 @@ class _MainPageState extends ConsumerState<MainPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 15.0,horizontal: 20),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  prefixIcon: Icon(
-                    Icons.search,
-                    color: Colors.grey,
-                  ),
-                  fillColor:
-                  platformBrightness == Brightness.dark
-                      // ? Color(0xff222F22)
-                    ? Color(0xff454f45)
-                      : Color(0xffe1eedf),
-                  filled: true,
-                  enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
-                      borderSide: BorderSide(
-                        color: Colors.transparent,
-                      )),
-                  focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
-                      borderSide: BorderSide(
-                        color: Colors.black87,
-                      )),
-                ),
-                //入力キーボードのdone→searchに変更
-                textInputAction: TextInputAction.search,
-                //search押したらデータ取得
-                onFieldSubmitted: (text) => _vm.onRepositoryDataChanged(text),
-              ),
-            ),
+            searchField(context, onFieldSubmitted: (text) => _vm.onRepositoryDataChanged(text)),
             Divider(
                 thickness: 0.5,
                 color:
@@ -121,54 +88,19 @@ class _MainPageState extends ConsumerState<MainPage> {
               }
             })(),
 
+            //ここ何でダメなのかわからない
+            // showResultCount(repoData: data.value, repoCount: data.value!.total_count),
+
             Expanded(
               child: data.when(
                 data: (data) => ListView.separated(
                   itemCount: data.items.length,
-                  itemBuilder: (context, index) =>ListTile(
-                    title: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(bottom:7.0),
-                          child: Text(
-                              data.items[index].full_name,
-                            style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ],
-                    ),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 7.0),
-                          child: Text(
-                            data.items[index].description ?? "No description",
-                            style: TextStyle(
-                              color:
-                              platformBrightness == Brightness.dark
-                              // ? Color(0xff222F22)
-                                  ? Color(0xffBBBBBB)
-                                  : Colors.black87,
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 3,
-                          ),
-                        ),
-                      ],
-                    ),
-                      onTap: () {
-                        _vm.onListTapped(data.items[index]);
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return DetailPage();
-                            },
-                          ),
-                        );
-                      }
-                  ),
+                  itemBuilder: (context,index) =>
+                      repositoryListTile(
+                        fullName: data.items[index].full_name,
+                        description: data.items[index].description,
+                        fetchData: () => _vm.onListTapped(data.items[index]),
+                      ),
                   separatorBuilder: (context, index) =>
                   Divider(color: Color(0xffBBBBBB),)
                 ),
@@ -182,3 +114,6 @@ class _MainPageState extends ConsumerState<MainPage> {
     );
   }
 }
+
+
+

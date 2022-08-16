@@ -17,6 +17,7 @@ StateProvider<RepositoryDataItems> _navigationIndexProvider =
     language: "",
     forks_count: 0,
     open_issues_count: 0,
+    owner: RepositoryDataOwner(avatar_url: ""),
   ),
 );
 
@@ -34,15 +35,18 @@ AutoDisposeFutureProviderFamily<RepositoryData, String> _apiFamilyProvider =
 });
 
 class MainPageVM {
-  late final WidgetRef _ref;
+  late final  WidgetRef _ref;
+
   String get repositoryData => _ref.watch(_repositoryDataProvider);
 
+  //futureProviderの返り値
   AsyncValue<RepositoryData> repositoryDataWithFamily(String repositoryData) =>
       _ref.watch(_apiFamilyProvider(repositoryData));
 
   RepositoryDataItems get tappedRepository =>
       _ref.watch(_navigationIndexProvider);
 
+  //viewページでrefを使えるようにする
   void setRef(WidgetRef ref) {
     _ref = ref;
   }

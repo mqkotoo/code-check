@@ -29,8 +29,19 @@ class RepositoryDataItems with _$RepositoryDataItems {
     required int watchers_count,
     required int forks_count,
     required int open_issues_count,
+    required RepositoryDataOwner owner,
   }) = _RepositoryDataItems;
 
   factory RepositoryDataItems.fromJson(Map<String, dynamic> json) =>
       _$RepositoryDataItemsFromJson(json);
+}
+
+@freezed
+class RepositoryDataOwner with _$RepositoryDataOwner {
+  const factory RepositoryDataOwner({
+    required String avatar_url,
+  }) = _RepositoryDataOwner;
+
+  factory RepositoryDataOwner.fromJson(Map<String, dynamic> json) =>
+      _$RepositoryDataOwnerFromJson(json);
 }

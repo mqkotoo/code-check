@@ -31,6 +31,8 @@ _$_RepositoryDataItems _$$_RepositoryDataItemsFromJson(
       watchers_count: json['watchers_count'] as int,
       forks_count: json['forks_count'] as int,
       open_issues_count: json['open_issues_count'] as int,
+      owner:
+          RepositoryDataOwner.fromJson(json['owner'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_RepositoryDataItemsToJson(
@@ -44,4 +46,17 @@ Map<String, dynamic> _$$_RepositoryDataItemsToJson(
       'watchers_count': instance.watchers_count,
       'forks_count': instance.forks_count,
       'open_issues_count': instance.open_issues_count,
+      'owner': instance.owner,
+    };
+
+_$_RepositoryDataOwner _$$_RepositoryDataOwnerFromJson(
+        Map<String, dynamic> json) =>
+    _$_RepositoryDataOwner(
+      avatar_url: json['avatar_url'] as String,
+    );
+
+Map<String, dynamic> _$$_RepositoryDataOwnerToJson(
+        _$_RepositoryDataOwner instance) =>
+    <String, dynamic>{
+      'avatar_url': instance.avatar_url,
     };

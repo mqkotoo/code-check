@@ -201,6 +201,7 @@ mixin _$RepositoryDataItems {
   int get watchers_count => throw _privateConstructorUsedError;
   int get forks_count => throw _privateConstructorUsedError;
   int get open_issues_count => throw _privateConstructorUsedError;
+  RepositoryDataOwner get owner => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -221,7 +222,10 @@ abstract class $RepositoryDataItemsCopyWith<$Res> {
       int stargazers_count,
       int watchers_count,
       int forks_count,
-      int open_issues_count});
+      int open_issues_count,
+      RepositoryDataOwner owner});
+
+  $RepositoryDataOwnerCopyWith<$Res> get owner;
 }
 
 /// @nodoc
@@ -243,6 +247,7 @@ class _$RepositoryDataItemsCopyWithImpl<$Res>
     Object? watchers_count = freezed,
     Object? forks_count = freezed,
     Object? open_issues_count = freezed,
+    Object? owner = freezed,
   }) {
     return _then(_value.copyWith(
       full_name: full_name == freezed
@@ -277,7 +282,18 @@ class _$RepositoryDataItemsCopyWithImpl<$Res>
           ? _value.open_issues_count
           : open_issues_count // ignore: cast_nullable_to_non_nullable
               as int,
+      owner: owner == freezed
+          ? _value.owner
+          : owner // ignore: cast_nullable_to_non_nullable
+              as RepositoryDataOwner,
     ));
+  }
+
+  @override
+  $RepositoryDataOwnerCopyWith<$Res> get owner {
+    return $RepositoryDataOwnerCopyWith<$Res>(_value.owner, (value) {
+      return _then(_value.copyWith(owner: value));
+    });
   }
 }
 
@@ -296,7 +312,11 @@ abstract class _$$_RepositoryDataItemsCopyWith<$Res>
       int stargazers_count,
       int watchers_count,
       int forks_count,
-      int open_issues_count});
+      int open_issues_count,
+      RepositoryDataOwner owner});
+
+  @override
+  $RepositoryDataOwnerCopyWith<$Res> get owner;
 }
 
 /// @nodoc
@@ -320,6 +340,7 @@ class __$$_RepositoryDataItemsCopyWithImpl<$Res>
     Object? watchers_count = freezed,
     Object? forks_count = freezed,
     Object? open_issues_count = freezed,
+    Object? owner = freezed,
   }) {
     return _then(_$_RepositoryDataItems(
       full_name: full_name == freezed
@@ -354,6 +375,10 @@ class __$$_RepositoryDataItemsCopyWithImpl<$Res>
           ? _value.open_issues_count
           : open_issues_count // ignore: cast_nullable_to_non_nullable
               as int,
+      owner: owner == freezed
+          ? _value.owner
+          : owner // ignore: cast_nullable_to_non_nullable
+              as RepositoryDataOwner,
     ));
   }
 }
@@ -371,7 +396,8 @@ class _$_RepositoryDataItems
       required this.stargazers_count,
       required this.watchers_count,
       required this.forks_count,
-      required this.open_issues_count});
+      required this.open_issues_count,
+      required this.owner});
 
   factory _$_RepositoryDataItems.fromJson(Map<String, dynamic> json) =>
       _$$_RepositoryDataItemsFromJson(json);
@@ -392,10 +418,12 @@ class _$_RepositoryDataItems
   final int forks_count;
   @override
   final int open_issues_count;
+  @override
+  final RepositoryDataOwner owner;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'RepositoryDataItems(full_name: $full_name, description: $description, avatar_url: $avatar_url, language: $language, stargazers_count: $stargazers_count, watchers_count: $watchers_count, forks_count: $forks_count, open_issues_count: $open_issues_count)';
+    return 'RepositoryDataItems(full_name: $full_name, description: $description, avatar_url: $avatar_url, language: $language, stargazers_count: $stargazers_count, watchers_count: $watchers_count, forks_count: $forks_count, open_issues_count: $open_issues_count, owner: $owner)';
   }
 
   @override
@@ -410,7 +438,8 @@ class _$_RepositoryDataItems
       ..add(DiagnosticsProperty('stargazers_count', stargazers_count))
       ..add(DiagnosticsProperty('watchers_count', watchers_count))
       ..add(DiagnosticsProperty('forks_count', forks_count))
-      ..add(DiagnosticsProperty('open_issues_count', open_issues_count));
+      ..add(DiagnosticsProperty('open_issues_count', open_issues_count))
+      ..add(DiagnosticsProperty('owner', owner));
   }
 
   @override
@@ -431,7 +460,8 @@ class _$_RepositoryDataItems
             const DeepCollectionEquality()
                 .equals(other.forks_count, forks_count) &&
             const DeepCollectionEquality()
-                .equals(other.open_issues_count, open_issues_count));
+                .equals(other.open_issues_count, open_issues_count) &&
+            const DeepCollectionEquality().equals(other.owner, owner));
   }
 
   @JsonKey(ignore: true)
@@ -445,7 +475,8 @@ class _$_RepositoryDataItems
       const DeepCollectionEquality().hash(stargazers_count),
       const DeepCollectionEquality().hash(watchers_count),
       const DeepCollectionEquality().hash(forks_count),
-      const DeepCollectionEquality().hash(open_issues_count));
+      const DeepCollectionEquality().hash(open_issues_count),
+      const DeepCollectionEquality().hash(owner));
 
   @JsonKey(ignore: true)
   @override
@@ -470,7 +501,8 @@ abstract class _RepositoryDataItems implements RepositoryDataItems {
       required final int stargazers_count,
       required final int watchers_count,
       required final int forks_count,
-      required final int open_issues_count}) = _$_RepositoryDataItems;
+      required final int open_issues_count,
+      required final RepositoryDataOwner owner}) = _$_RepositoryDataItems;
 
   factory _RepositoryDataItems.fromJson(Map<String, dynamic> json) =
       _$_RepositoryDataItems.fromJson;
@@ -492,7 +524,156 @@ abstract class _RepositoryDataItems implements RepositoryDataItems {
   @override
   int get open_issues_count;
   @override
+  RepositoryDataOwner get owner;
+  @override
   @JsonKey(ignore: true)
   _$$_RepositoryDataItemsCopyWith<_$_RepositoryDataItems> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+RepositoryDataOwner _$RepositoryDataOwnerFromJson(Map<String, dynamic> json) {
+  return _RepositoryDataOwner.fromJson(json);
+}
+
+/// @nodoc
+mixin _$RepositoryDataOwner {
+  String get avatar_url => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $RepositoryDataOwnerCopyWith<RepositoryDataOwner> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RepositoryDataOwnerCopyWith<$Res> {
+  factory $RepositoryDataOwnerCopyWith(
+          RepositoryDataOwner value, $Res Function(RepositoryDataOwner) then) =
+      _$RepositoryDataOwnerCopyWithImpl<$Res>;
+  $Res call({String avatar_url});
+}
+
+/// @nodoc
+class _$RepositoryDataOwnerCopyWithImpl<$Res>
+    implements $RepositoryDataOwnerCopyWith<$Res> {
+  _$RepositoryDataOwnerCopyWithImpl(this._value, this._then);
+
+  final RepositoryDataOwner _value;
+  // ignore: unused_field
+  final $Res Function(RepositoryDataOwner) _then;
+
+  @override
+  $Res call({
+    Object? avatar_url = freezed,
+  }) {
+    return _then(_value.copyWith(
+      avatar_url: avatar_url == freezed
+          ? _value.avatar_url
+          : avatar_url // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_RepositoryDataOwnerCopyWith<$Res>
+    implements $RepositoryDataOwnerCopyWith<$Res> {
+  factory _$$_RepositoryDataOwnerCopyWith(_$_RepositoryDataOwner value,
+          $Res Function(_$_RepositoryDataOwner) then) =
+      __$$_RepositoryDataOwnerCopyWithImpl<$Res>;
+  @override
+  $Res call({String avatar_url});
+}
+
+/// @nodoc
+class __$$_RepositoryDataOwnerCopyWithImpl<$Res>
+    extends _$RepositoryDataOwnerCopyWithImpl<$Res>
+    implements _$$_RepositoryDataOwnerCopyWith<$Res> {
+  __$$_RepositoryDataOwnerCopyWithImpl(_$_RepositoryDataOwner _value,
+      $Res Function(_$_RepositoryDataOwner) _then)
+      : super(_value, (v) => _then(v as _$_RepositoryDataOwner));
+
+  @override
+  _$_RepositoryDataOwner get _value => super._value as _$_RepositoryDataOwner;
+
+  @override
+  $Res call({
+    Object? avatar_url = freezed,
+  }) {
+    return _then(_$_RepositoryDataOwner(
+      avatar_url: avatar_url == freezed
+          ? _value.avatar_url
+          : avatar_url // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_RepositoryDataOwner
+    with DiagnosticableTreeMixin
+    implements _RepositoryDataOwner {
+  const _$_RepositoryDataOwner({required this.avatar_url});
+
+  factory _$_RepositoryDataOwner.fromJson(Map<String, dynamic> json) =>
+      _$$_RepositoryDataOwnerFromJson(json);
+
+  @override
+  final String avatar_url;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'RepositoryDataOwner(avatar_url: $avatar_url)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'RepositoryDataOwner'))
+      ..add(DiagnosticsProperty('avatar_url', avatar_url));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_RepositoryDataOwner &&
+            const DeepCollectionEquality()
+                .equals(other.avatar_url, avatar_url));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(avatar_url));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_RepositoryDataOwnerCopyWith<_$_RepositoryDataOwner> get copyWith =>
+      __$$_RepositoryDataOwnerCopyWithImpl<_$_RepositoryDataOwner>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_RepositoryDataOwnerToJson(
+      this,
+    );
+  }
+}
+
+abstract class _RepositoryDataOwner implements RepositoryDataOwner {
+  const factory _RepositoryDataOwner({required final String avatar_url}) =
+      _$_RepositoryDataOwner;
+
+  factory _RepositoryDataOwner.fromJson(Map<String, dynamic> json) =
+      _$_RepositoryDataOwner.fromJson;
+
+  @override
+  String get avatar_url;
+  @override
+  @JsonKey(ignore: true)
+  _$$_RepositoryDataOwnerCopyWith<_$_RepositoryDataOwner> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -18,9 +18,30 @@ class DetailPage extends ConsumerWidget {
 
     final Size size = MediaQuery.of(context).size;
 
+    //テーマ別に色を変えられるようにするためのやつ
+    final platformBrightness = MediaQuery.platformBrightnessOf(context);
+
     return Scaffold(
+      backgroundColor:
+      platformBrightness == Brightness.dark
+          ? Color(0xff1A1C19)
+          : Color(0xffFCFDF6),
         appBar: AppBar(
-          title: const Text("Repository Detail"),
+          elevation: 0,
+          title:  Text(
+              "Repository Detail",
+            style: TextStyle(
+              color:
+              platformBrightness == Brightness.dark
+                  ? Colors.white
+                  : Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          backgroundColor :
+          platformBrightness == Brightness.dark
+              ? Color(0xff1A1C19)
+              : Color(0xffFCFDF6),
         ),
         body: Center(
           child: Column(
@@ -36,8 +57,15 @@ class DetailPage extends ConsumerWidget {
               Text(data.full_name),
               Text(data.description ?? "No description"),
               Text(data.language ?? "No programing language"),
-              Text(data.stargazers_count.toString()),
-              Text(data.forks_count.toString()),
+              Text("star : " + data.stargazers_count.toString()),
+              Text("watch : " +data.watchers_count.toString()),
+              Text("fork : " +data.forks_count.toString()),
+              Text("issues : " +data.open_issues_count.toString()),
+              Icon(Icons.star,color: Colors.yellowAccent),
+              Icon(Icons.language,color: Colors.blueAccent),
+              Icon(Icons.remove_red_eye_outlined,color: Colors.brown),
+              Icon(Icons.fork_right_sharp,color: Colors.purpleAccent),
+              Icon(Icons.info_outline,color: Colors.greenAccent)
             ],
           ),
         )

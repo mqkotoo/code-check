@@ -7,12 +7,12 @@
 
 |main -light|main -dark|
 |---|---|
-| ![simulator_screenshot_83734F98-20D6-4647-8CA8-C09FD09CAAB5](https://user-images.githubusercontent.com/111117157/185021035-16a948a9-82ad-4505-a88b-50515aac9ae0.png) |![simulator_screenshot_4C809B3A-BC1C-4824-BE61-A289CF3029A1](https://user-images.git|
+| ![simulator_screenshot_83734F98-20D6-4647-8CA8-C09FD09CAAB5](https://user-images.githubusercontent.com/111117157/185021035-16a948a9-82ad-4505-a88b-50515aac9ae0.png) |![simulator_screenshot_4C809B3A-BC1C-4824-BE61-A289CF3029A1](https://user-images.git)|
 
 |detail -light|detail -dark|
 |---|---|
 |![simulator_screenshot_83734F98-20D6-4647-8CA8-C09FD09CAAB5](https://user-images.githubusercontent.com/111117157/185021035-16a948a9-82ad-4505-a88b-50515aac9ae0.png)
-|![simulator_screenshot_4C809B3A-BC1C-4824-BE61-A289CF3029A1](https://user-images.git
+|![simulator_screenshot_4C809B3A-BC1C-4824-BE61-A289CF3029A1](https://user-images.git)
 |
 
 

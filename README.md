@@ -7,11 +7,13 @@
 
 |main -light|main -dark|
 |---|---|
-| ![](../../../../var/folders/tt/z1_c64qn6dz049j12sbx0wgh0000gp/T/simulator_screenshot_F31EDE57-FB62-4B19-9658-F7A1CA57A589.png) |![](../../../../var/folders/tt/z1_c64qn6dz049j12sbx0wgh0000gp/T/simulator_screenshot_45B1F993-CB45-46F3-BB79-1CFBF706F59A.png)|
+| ![simulator_screenshot_83734F98-20D6-4647-8CA8-C09FD09CAAB5](https://user-images.githubusercontent.com/111117157/185021035-16a948a9-82ad-4505-a88b-50515aac9ae0.png) |![simulator_screenshot_4C809B3A-BC1C-4824-BE61-A289CF3029A1](https://user-images.git|
 
 |detail -light|detail -dark|
 |---|---|
-|![](../../../../var/folders/tt/z1_c64qn6dz049j12sbx0wgh0000gp/T/simulator_screenshot_83EB64EF-BC02-4A37-8661-A96FD93A09DD.png)|![](../../Desktop/Simulator Screen Shot - iPhone 11 Pro Max - 2022-08-17 at 10.53.09.png)|
+|![simulator_screenshot_83734F98-20D6-4647-8CA8-C09FD09CAAB5](https://user-images.githubusercontent.com/111117157/185021035-16a948a9-82ad-4505-a88b-50515aac9ae0.png)
+|![simulator_screenshot_4C809B3A-BC1C-4824-BE61-A289CF3029A1](https://user-images.git
+|
 
 
 ## 機能、動作等（進捗）

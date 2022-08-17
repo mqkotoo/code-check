@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import '../main_page_vm.dart';
 import '../widget/main_page_widget.dart';
-
+import 'next_page.dart';
 
 class MainPage extends ConsumerStatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -29,25 +29,24 @@ class _MainPageState extends ConsumerState<MainPage> {
     //テーマ別に色を変えられるようにするためのやつ
     final platformBrightness = MediaQuery.platformBrightnessOf(context);
 
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
-      backgroundColor:
-      platformBrightness == Brightness.dark
+      backgroundColor: platformBrightness == Brightness.dark
           ? Color(0xff1A1C19)
           : Color(0xffFCFDF6),
       appBar: AppBar(
         elevation: 0,
-        backgroundColor:
-        platformBrightness == Brightness.dark
+        backgroundColor: platformBrightness == Brightness.dark
             ? Color(0xff1A1C19)
             : Color(0xffFCFDF6),
         title: Text(
           "GitHub Searcher",
           style: TextStyle(
-              color:
-              platformBrightness == Brightness.dark
-                  ? Colors.white
-                  : Colors.black,
-              fontWeight: FontWeight.bold,
+            color: platformBrightness == Brightness.dark
+                ? Colors.white
+                : Colors.black,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),
@@ -55,18 +54,20 @@ class _MainPageState extends ConsumerState<MainPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            searchField(context, onFieldSubmitted: (text) => _vm.onRepositoryDataChanged(text)),
+            searchField(context,
+                onFieldSubmitted: (text) => _vm.onRepositoryDataChanged(text)),
             Divider(
-                thickness: 0.5,
-                color:
-                platformBrightness == Brightness.dark
-                    ? Color(0xff777777)
-                    : Colors.black12,
+              thickness: 0.5,
+              color: platformBrightness == Brightness.dark
+                  ? Color(0xff777777)
+                  : Colors.black12,
             ),
+
             (() {
               if (data.value != null && data.value!.total_count != 0) {
                 //resultをカンマ区切りで表示
-                String total_count = NumberFormat('#,##0').format(data.value!.total_count);
+                String total_count =
+                    NumberFormat('#,##0').format(data.value!.total_count);
                 return Padding(
                   padding: const EdgeInsets.only(right: 10),
                   child: Align(
@@ -94,18 +95,32 @@ class _MainPageState extends ConsumerState<MainPage> {
             Expanded(
               child: data.when(
                 data: (data) => ListView.separated(
-                  itemCount: data.items.length,
-                  itemBuilder: (context,index) =>
-                      repositoryListTile(
-                        fullName: data.items[index].full_name,
-                        description: data.items[index].description,
-                        fetchData: () => _vm.onListTapped(data.items[index]),
-                      ),
-                  separatorBuilder: (context, index) =>
-                  Divider(color: Color(0xffBBBBBB),)
-                ),
+                    itemCount: data.items.length,
+                    itemBuilder: (context, index) => repositoryListTile(
+                          fullName: data.items[index].full_name,
+                          description: data.items[index].description,
+                          onTap: () {
+                            _vm.onListTapped(data.items[index]);
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return DetailPage();
+                                },
+                              ),
+                            );
+                          },
+                        ),
+                    separatorBuilder: (context, index) => Divider(
+                          color: Color(0xffBBBBBB),
+                        )),
                 error: (error, stack) => Text(error.toString()),
-                loading: () => const CircularProgressIndicator(),
+                loading: () => Center(
+                  child: SizedBox(
+                    width: size.height * 0.11,
+                      height: size.height * 0.11,
+                      child: const CircularProgressIndicator(),
+                  ),
+                ),
               ),
             )
           ],
@@ -114,6 +129,3 @@ class _MainPageState extends ConsumerState<MainPage> {
     );
   }
 }
-
-
-

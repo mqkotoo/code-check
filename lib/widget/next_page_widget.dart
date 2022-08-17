@@ -18,20 +18,21 @@ class detailElement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     return Padding(
-      padding: const EdgeInsets.only(bottom: 10.0),
+      padding: EdgeInsets.only(bottom: size.height * 0.01),
       child: Row(
         children: [
           CircleAvatar(
             backgroundColor: iconBackgroundColor,
-            child: Icon(icon,size: 25,color: iconColor),
+            child: Icon(icon,size: size.height * 0.027,color: iconColor),
           ),
-          SizedBox(width: 14),
-          Text(elementLabel,style: TextStyle(fontSize: 17)),
+          SizedBox(width: size.width * 0.034),
+          Text(elementLabel,style: TextStyle(fontSize: size.height * 0.019)),
           Spacer(),
           Text(
             element,
-            style: TextStyle(fontSize: 17),
+            style: TextStyle(fontSize: size.height * 0.019),
           )
         ],
       ),
@@ -48,7 +49,7 @@ Widget repositoryDetail(BuildContext context,
   return Column(
     children: [
       Padding(
-        padding: const EdgeInsets.only(top: 20.0),
+        padding: EdgeInsets.only(top: size.height * 0.022),
         child: ClipOval(
           child: Image.network(
             userIcon,
@@ -58,14 +59,19 @@ Widget repositoryDetail(BuildContext context,
         ),
       ),
       Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10.0),
+        padding: EdgeInsets.symmetric(vertical: size.height * 0.01),
         child: Text(
           repoTitle,
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: size.height * 0.02),
         ),
       ),
       Padding(
-        padding: const EdgeInsets.fromLTRB(25, 0, 25, 15),
+        padding: EdgeInsets.fromLTRB(
+            size.width * 0.06,
+            0,
+            size.width * 0.06,
+            size.width * 0.016,
+        ),
         child: Text(
           repoDescription ?? "No description",
           style: TextStyle(

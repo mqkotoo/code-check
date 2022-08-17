@@ -1,7 +1,7 @@
 # コードチェック
 主な参考
-    -https://www.udemy.com/course/riverpod/
-    -https://zenn.dev/tsuruo/articles/017e405b21412f
+    * https://www.udemy.com/course/riverpod/
+    * https://zenn.dev/tsuruo/articles/017e405b21412f
 
 ## スクリーンショット
 
@@ -25,8 +25,7 @@
 
 ### UI/UX
 * エラー発生時の処理
-* 画面回転・様々な画面サイズ対応
-    -横画面に対応できていないため画面を縦で固定
+* 画面回転・様々な画面サイズ対応(横画面に対応できていないため画面を縦で固定)
 * ~Theme の適切な利用・ダークモードの対応~
 * 多言語対応
 

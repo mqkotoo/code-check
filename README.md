@@ -1,7 +1,7 @@
 # コードチェック
 主な参考
-    * https://www.udemy.com/course/riverpod/
-    * https://zenn.dev/tsuruo/articles/017e405b21412f
+* https://www.udemy.com/course/riverpod/
+* https://zenn.dev/tsuruo/articles/017e405b21412f
 
 ## スクリーンショット
 

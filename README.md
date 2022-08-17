@@ -35,11 +35,11 @@
 * Flutter: 3.0.5
 * Dart: 2.17.6
 
-##状態管理
+## 状態管理
 
 flutter_riverpod: ^1.0.4
 
-##パッケージ
+## パッケージ
 
 * freezed_annotation: ^2.1.0
 * json_annotation: ^4.6.0
@@ -52,4 +52,4 @@ flutter_riverpod: ^1.0.4
 
 
 
-# Note
+## Note

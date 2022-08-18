@@ -1,7 +1,7 @@
 # コードチェック
 主な参考
-    -https://www.udemy.com/course/riverpod/
-    -https://zenn.dev/tsuruo/articles/017e405b21412f
+* https://www.udemy.com/course/riverpod/
+* https://zenn.dev/tsuruo/articles/017e405b21412f
 
 ## スクリーンショット
 
@@ -12,7 +12,6 @@
 |detail -light|detail -dark|
 |---|---|
 |![simulator_screenshot_7989E781-585A-4DC2-B56A-D3DA4F3377E9](https://user-images.githubusercontent.com/111117157/185385478-b60ef215-1054-4700-835a-af727c5f4da9.png)|![simulator_screenshot_9E7E9993-46C6-4A73-9FB4-6CA6B3001F2D](https://user-images.githubusercontent.com/111117157/185385646-1790dbc1-7196-4deb-b79d-2c4c7d0cb9bf.png)|
-
 
 ## 機能、動作等（進捗）
 ### 動作
@@ -25,8 +24,7 @@
 
 ### UI/UX
 * エラー発生時の処理
-* 画面回転・様々な画面サイズ対応
-    -横画面に対応できていないため画面を縦で固定
+* 画面回転・様々な画面サイズ対応(横画面に対応できていないため画面を縦で固定)
 * ~Theme の適切な利用・ダークモードの対応~
 * 多言語対応
 
@@ -36,11 +34,11 @@
 * Flutter: 3.0.5
 * Dart: 2.17.6
 
-##状態管理
+## 状態管理
 
 flutter_riverpod: ^1.0.4
 
-##パッケージ
+## パッケージ
 
 * freezed_annotation: ^2.1.0
 * json_annotation: ^4.6.0
@@ -53,4 +51,4 @@ flutter_riverpod: ^1.0.4
 
 
 
-# Note
+## Note

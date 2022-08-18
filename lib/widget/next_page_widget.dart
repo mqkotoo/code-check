@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class detailElement extends StatelessWidget {
-  const detailElement({
+class verDetailElement extends StatelessWidget {
+  const verDetailElement({
     Key? key,
     required this.icon,
     required this.elementLabel,
@@ -40,7 +40,48 @@ class detailElement extends StatelessWidget {
   }
 }
 
-Widget repositoryDetail(BuildContext context,
+
+class horiDetailElement extends StatelessWidget {
+  const horiDetailElement({
+    Key? key,
+    required this.icon,
+    required this.elementLabel,
+    required this.element,
+    required this.iconBackgroundColor,
+    required this.iconColor
+  }) : super(key: key);
+
+  final IconData icon;
+  final String elementLabel;
+  final String element;
+  final Color iconBackgroundColor;
+  final Color iconColor;
+
+  @override
+  Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+    return Padding(
+      padding: EdgeInsets.only(bottom: size.width * 0.03),
+      child: Row(
+        children: [
+          CircleAvatar(
+            backgroundColor: iconBackgroundColor,
+            child: Icon(icon,color: iconColor),
+          ),
+          SizedBox(width: size.width * 0.025),
+          Text(elementLabel,style: TextStyle(fontSize: size.width * 0.019)),
+          SizedBox(width: size.width * 0.035),
+          Text(
+            element,
+            style: TextStyle(fontSize: size.width * 0.019),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+Widget verRepositoryDetail(BuildContext context,
     {required String userIcon,
       required String repoTitle,
       required String? repoDescription}) {
@@ -82,6 +123,52 @@ Widget repositoryDetail(BuildContext context,
         ),
       ),
     ],
+  );
+}
+
+Widget horiRepositoryDetail(BuildContext context,
+    {required String userIcon,
+      required String repoTitle,
+      required String? repoDescription}) {
+  final platformBrightness = MediaQuery.platformBrightnessOf(context);
+  final Size size = MediaQuery.of(context).size;
+  print(size.height);
+  return Padding(
+    padding: EdgeInsets.symmetric(vertical : size.height * 0.036,horizontal: size.width * 0.11),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        ClipOval(
+          child: Image.network(
+            userIcon,
+            width: size.width * 0.1,
+            height: size.width * 0.1,
+          ),
+        ),
+        Container(
+          width: size.width * 0.5,
+          child: Column(
+              children : [
+                Padding(
+                  padding: EdgeInsets.only(bottom : size.height * 0.036),
+                  child: Text(
+                    repoTitle,
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                ),
+                Text(
+                  repoDescription ?? "No description",
+                  style: TextStyle(
+                    color: platformBrightness == Brightness.dark
+                        ? Color(0xffBBBBBB)
+                        : Colors.black87,
+                  ),
+                ),
+              ]
+          ),
+        ),
+      ],
+    ),
   );
 }
 

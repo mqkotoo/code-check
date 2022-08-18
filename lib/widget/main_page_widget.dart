@@ -25,7 +25,9 @@ class repositoryListTile extends StatelessWidget {
               padding: EdgeInsets.only(bottom: size.height * 0.008),
               child: Text(
                 fullName,
-                style: TextStyle(fontSize: size.height * 0.019, fontWeight: FontWeight.bold),
+                style: size.height > size.width
+                    ? TextStyle(fontSize: size.height * 0.019, fontWeight: FontWeight.bold)
+                    : Theme.of(context).textTheme.subtitle2,
               ),
             ),
           ],
@@ -40,9 +42,8 @@ class repositoryListTile extends StatelessWidget {
                 style: TextStyle(
                   color:
                   platformBrightness == Brightness.dark
-                  // ? Color(0xff222F22)
                       ? Color(0xffBBBBBB)
-                      : Colors.black87,
+                      : Colors.grey.shade700,
                 ),
                 overflow: TextOverflow.ellipsis,
                 maxLines: 3,
@@ -62,7 +63,9 @@ Widget searchField(BuildContext context,{required void Function(String) onFieldS
   return Padding(
     padding:  EdgeInsets.symmetric(vertical: size.height * 0.016,horizontal: size.width * 0.048),
     child: TextFormField(
-      style: TextStyle(fontSize: size.height * 0.016),
+      style: size.height > size.width
+          ? TextStyle(fontSize: size.height * 0.016)
+          :TextStyle(),
       decoration: InputDecoration(
         prefixIcon: Icon(
           Icons.search,

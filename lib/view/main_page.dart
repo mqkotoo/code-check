@@ -72,7 +72,7 @@ class _MainPageState extends ConsumerState<MainPage> {
                   padding: const EdgeInsets.only(right: 10),
                   child: Align(
                     alignment: AlignmentDirectional.centerEnd,
-                    child: Text("result: ${total_count}"),
+                    child: SafeArea(child: Text("result: ${total_count}")),
                   ),
                 );
               }
@@ -81,7 +81,8 @@ class _MainPageState extends ConsumerState<MainPage> {
                   padding: const EdgeInsets.only(right: 10),
                   child: Align(
                     alignment: AlignmentDirectional.centerEnd,
-                    child: Text("result: 0"),
+                    //横画面にした時にノッチで隠れないようにsafeareaで囲む
+                    child: SafeArea(child: Text("result: 0")),
                   ),
                 );
               } else {
@@ -93,6 +94,7 @@ class _MainPageState extends ConsumerState<MainPage> {
             // showResultCount(repoData: data.value, repoCount: data.value!.total_count),
 
             Expanded(
+              flex: 8,
               child: data.when(
                 data: (data) => ListView.separated(
                     itemCount: data.items.length,

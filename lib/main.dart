@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'view/main_page.dart';
 
 void main() {
+  //横画面のUI作ったが画面の向きが変わる際にクラッシュしてしまうので一旦固定
   WidgetsFlutterBinding.ensureInitialized();
   //画面を縦に固定　横向きにならないようにする
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);

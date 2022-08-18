@@ -7,11 +7,11 @@
 
 |main -light|main -dark|
 |---|---|
-| ![simulator_screenshot_83734F98-20D6-4647-8CA8-C09FD09CAAB5](https://user-images.githubusercontent.com/111117157/185021035-16a948a9-82ad-4505-a88b-50515aac9ae0.png) |![simulator_screenshot_4C809B3A-BC1C-4824-BE61-A289CF3029A1](https://user-images.git)|
+|![simulator_screenshot_C3BDB8AC-144E-4A46-A32D-641709479160](https://user-images.githubusercontent.com/111117157/185385394-493b019b-c67e-4df4-97f7-919f03d1ec9f.png)|![simulator_screenshot_51EBCD67-9505-4138-A16D-CFD19BAE40FE](https://user-images.githubusercontent.com/111117157/185385211-be1a8e3a-568c-42ec-b7c7-fac52afe0bf3.png)|
 
 |detail -light|detail -dark|
 |---|---|
-|![simulator_screenshot_83734F98-20D6-4647-8CA8-C09FD09CAAB5](https://user-images.githubusercontent.com/111117157/185021035-16a948a9-82ad-4505-a88b-50515aac9ae0.png)|![simulator_screenshot_4C809B3A-BC1C-4824-BE61-A289CF3029A1](https://user-images.git)|
+|![simulator_screenshot_7989E781-585A-4DC2-B56A-D3DA4F3377E9](https://user-images.githubusercontent.com/111117157/185385478-b60ef215-1054-4700-835a-af727c5f4da9.png)|![simulator_screenshot_9E7E9993-46C6-4A73-9FB4-6CA6B3001F2D](https://user-images.githubusercontent.com/111117157/185385646-1790dbc1-7196-4deb-b79d-2c4c7d0cb9bf.png)|
 
 ## 機能、動作等（進捗）
 ### 動作

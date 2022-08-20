@@ -14,33 +14,9 @@ class DetailPage extends ConsumerWidget {
     //refを初期化
     _vm.setRef(ref);
 
-    // テーマ別に色を変えられるようにするためのやつ
-    final platformBrightness = MediaQuery.platformBrightnessOf(context);
-
-
     return Scaffold(
-      backgroundColor: platformBrightness == Brightness.dark
-          ? Color(0xff1A1C19)
-          : Color(0xffFCFDF6),
       appBar: AppBar(
-        iconTheme: IconThemeData(
-          color: platformBrightness == Brightness.dark
-              ? Colors.white
-              : Colors.black,
-        ),
-        elevation: 0,
-        title: Text(
-          "Repository Detail",
-          style: TextStyle(
-            color: platformBrightness == Brightness.dark
-                ? Colors.white
-                : Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        backgroundColor: platformBrightness == Brightness.dark
-            ? Color(0xff1A1C19)
-            : Color(0xffFCFDF6),
+        title: Text("Repository Detail"),
       ),
       body: LayoutBuilder(
         builder: (context, constraints) {
@@ -57,7 +33,6 @@ class DetailPage extends ConsumerWidget {
 
     final size = MediaQuery.of(context).size;
     RepositoryDataItems? data = _vm.tappedRepository;
-    final platformBrightness = MediaQuery.platformBrightnessOf(context);
 
     // データの数をカンマ区切りで表示
     String stars_count = NumberFormat('#,##0').format(data.stargazers_count);
@@ -73,12 +48,8 @@ class DetailPage extends ConsumerWidget {
             repoTitle: data.full_name,
             repoDescription: data.description,
         ),
-        Divider(
-          thickness: 0.5,
-          color: platformBrightness == Brightness.dark
-              ? Color(0xff777777)
-              : Colors.black12,
-        ),
+        Divider(),
+
         Padding(
           padding:
           EdgeInsets.symmetric(vertical: size.height * 0.01, horizontal: size.width * 0.06),
@@ -132,7 +103,6 @@ class DetailPage extends ConsumerWidget {
 
     final size = MediaQuery.of(context).size;
     RepositoryDataItems? data = _vm.tappedRepository;
-    final platformBrightness = MediaQuery.platformBrightnessOf(context);
 
     // データの数をカンマ区切りで表示
     String stars_count = NumberFormat('#,##0').format(data.stargazers_count);
@@ -149,12 +119,8 @@ class DetailPage extends ConsumerWidget {
               repoTitle: data.full_name,
               repoDescription: data.description,
           ),
-          Divider(
-            thickness: 0.5,
-            color: platformBrightness == Brightness.dark
-                ? Color(0xff777777)
-                : Colors.black12,
-          ),
+          Divider(),
+
           Padding(
             padding:
             EdgeInsets.symmetric(vertical: size.height * 0.04, horizontal: size.width * 0.1),

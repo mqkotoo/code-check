@@ -26,29 +26,11 @@ class _MainPageState extends ConsumerState<MainPage> {
     //リポジトリのデータ取得
     final data = _vm.repositoryDataWithFamily(_vm.repositoryData);
 
-    //テーマ別に色を変えられるようにするためのやつ
-    final platformBrightness = MediaQuery.platformBrightnessOf(context);
-
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: platformBrightness == Brightness.dark
-          ? Color(0xff1A1C19)
-          : Color(0xffFCFDF6),
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: platformBrightness == Brightness.dark
-            ? Color(0xff1A1C19)
-            : Color(0xffFCFDF6),
-        title: Text(
-          "GitHub Searcher",
-          style: TextStyle(
-            color: platformBrightness == Brightness.dark
-                ? Colors.white
-                : Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        title: Text("GitHub Searcher"),
       ),
       body: Center(
         child: Column(
@@ -56,12 +38,7 @@ class _MainPageState extends ConsumerState<MainPage> {
           children: [
             searchField(context,
                 onFieldSubmitted: (text) => _vm.onRepositoryDataChanged(text)),
-            Divider(
-              thickness: 0.5,
-              color: platformBrightness == Brightness.dark
-                  ? Color(0xff777777)
-                  : Colors.black12,
-            ),
+            Divider(),
 
             (() {
               if (data.value != null && data.value!.total_count != 0) {

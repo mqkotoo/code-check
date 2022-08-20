@@ -1,3 +1,4 @@
+import 'package:code_check/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 class repositoryListTile extends StatelessWidget {
@@ -15,7 +16,6 @@ class repositoryListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final platformBrightness = MediaQuery.platformBrightnessOf(context);
     final size = MediaQuery.of(context).size;
     return ListTile(
         title: Column(
@@ -39,12 +39,7 @@ class repositoryListTile extends StatelessWidget {
               padding: EdgeInsets.only(bottom: size.height * 0.008),
               child: Text(
                 description ?? "No description",
-                style: TextStyle(
-                  color:
-                  platformBrightness == Brightness.dark
-                      ? Color(0xffBBBBBB)
-                      : Colors.grey.shade700,
-                ),
+                style: descriptionStyle(context),
                 overflow: TextOverflow.ellipsis,
                 maxLines: 3,
               ),
@@ -58,7 +53,6 @@ class repositoryListTile extends StatelessWidget {
 
 
 Widget searchField(BuildContext context,{required void Function(String) onFieldSubmitted}) {
-  final platformBrightness = MediaQuery.platformBrightnessOf(context);
   final size = MediaQuery.of(context).size;
   return Padding(
     padding:  EdgeInsets.symmetric(vertical: size.height * 0.016,horizontal: size.width * 0.048),
@@ -66,28 +60,6 @@ Widget searchField(BuildContext context,{required void Function(String) onFieldS
       style: size.height > size.width
           ? TextStyle(fontSize: size.height * 0.016)
           :TextStyle(),
-      decoration: InputDecoration(
-        prefixIcon: Icon(
-          Icons.search,
-          color: Colors.grey,
-        ),
-        fillColor:
-        platformBrightness == Brightness.dark
-        // ? Color(0xff222F22)
-            ? Color(0xff454f45)
-            : Color(0xffe1eedf),
-        filled: true,
-        enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30),
-            borderSide: BorderSide(
-              color: Colors.transparent,
-            )),
-        focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30),
-            borderSide: BorderSide(
-              color: Colors.black87,
-            )),
-      ),
       //入力キーボードのdone→searchに変更
       textInputAction: TextInputAction.search,
       //search押したらデータ取得

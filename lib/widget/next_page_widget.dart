@@ -1,3 +1,4 @@
+import 'package:code_check/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 class verDetailElement extends StatelessWidget {
@@ -85,8 +86,9 @@ Widget verRepositoryDetail(BuildContext context,
     {required String userIcon,
       required String repoTitle,
       required String? repoDescription}) {
-  final platformBrightness = MediaQuery.platformBrightnessOf(context);
+
   final Size size = MediaQuery.of(context).size;
+
   return Column(
     children: [
       Padding(
@@ -115,11 +117,7 @@ Widget verRepositoryDetail(BuildContext context,
         ),
         child: Text(
           repoDescription ?? "No description",
-          style: TextStyle(
-            color: platformBrightness == Brightness.dark
-                ? Color(0xffBBBBBB)
-                : Colors.black87,
-          ),
+          style: descriptionStyle(context),
         ),
       ),
     ],
@@ -130,9 +128,9 @@ Widget horiRepositoryDetail(BuildContext context,
     {required String userIcon,
       required String repoTitle,
       required String? repoDescription}) {
-  final platformBrightness = MediaQuery.platformBrightnessOf(context);
+
   final Size size = MediaQuery.of(context).size;
-  print(size.height);
+
   return Padding(
     padding: EdgeInsets.symmetric(vertical : size.height * 0.036,horizontal: size.width * 0.11),
     child: Row(
@@ -158,11 +156,7 @@ Widget horiRepositoryDetail(BuildContext context,
                 ),
                 Text(
                   repoDescription ?? "No description",
-                  style: TextStyle(
-                    color: platformBrightness == Brightness.dark
-                        ? Color(0xffBBBBBB)
-                        : Colors.black87,
-                  ),
+                  style:descriptionStyle(context),
                 ),
               ]
           ),

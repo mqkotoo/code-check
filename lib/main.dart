@@ -1,3 +1,4 @@
+import 'package:code_check/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,15 +18,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      builder: (BuildContext context,Widget? child) {
+      builder: (BuildContext context, Widget? child) {
         return MediaQuery(
           //ユーザーのデバイスで”文字を大きくする”の設定をしていてもそれにUIを影響させないようにする
-          data : MediaQuery.of(context).copyWith(textScaleFactor: 1),
-            child: child!,
+          data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
+          child: child!,
         );
       },
-      theme: ThemeData.light(),
-      darkTheme: ThemeData.dark(),
+      theme: lightTheme,
+      darkTheme: darkTheme,
       //テーマの設定をシステムに依存させる
       themeMode: ThemeMode.system,
       //デバッグバナー消す

@@ -43,7 +43,7 @@ class DetailPage extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        verRepositoryDetail(context,
+        VerRepositoryDetail(
             userIcon: data.owner.avatar_url,
             repoTitle: data.full_name,
             repoDescription: data.description,
@@ -114,7 +114,7 @@ class DetailPage extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          horiRepositoryDetail(context,
+          HoriRepositoryDetail(
               userIcon: data.owner.avatar_url,
               repoTitle: data.full_name,
               repoDescription: data.description,

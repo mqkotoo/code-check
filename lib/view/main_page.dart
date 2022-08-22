@@ -36,7 +36,7 @@ class _MainPageState extends ConsumerState<MainPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            searchField(context,
+            SearchField(
                 onFieldSubmitted: (text) => _vm.onRepositoryDataChanged(text)),
             const Divider(),
 

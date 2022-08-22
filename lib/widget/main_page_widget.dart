@@ -52,21 +52,32 @@ class RepositoryListTile extends StatelessWidget {
 }
 
 
-Widget searchField(BuildContext context,{required void Function(String) onFieldSubmitted}) {
-  final size = MediaQuery.of(context).size;
-  return Padding(
-    padding:  EdgeInsets.symmetric(vertical: size.height * 0.016,horizontal: size.width * 0.048),
-    child: TextFormField(
-      style: size.height > size.width
-          ? TextStyle(fontSize: size.height * 0.016)
-          :const TextStyle(),
-      //入力キーボードのdone→searchに変更
-      textInputAction: TextInputAction.search,
-      //search押したらデータ取得
-      onFieldSubmitted: onFieldSubmitted,
-    ),
-  );
+class SearchField extends StatelessWidget {
+  const SearchField({
+    Key? key,
+    required this.onFieldSubmitted,
+  }) : super(key: key);
+
+  final void Function(String) onFieldSubmitted;
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return Padding(
+      padding:  EdgeInsets.symmetric(vertical: size.height * 0.016,horizontal: size.width * 0.048),
+      child: TextFormField(
+        style: size.height > size.width
+            ? TextStyle(fontSize: size.height * 0.016)
+            :const TextStyle(),
+        //入力キーボードのdone→searchに変更
+        textInputAction: TextInputAction.search,
+        //search押したらデータ取得
+        onFieldSubmitted: onFieldSubmitted,
+      ),
+    );
+  }
 }
+
 
 // Widget showResultCount({required repoData, required int repoCount}) {
 //   if (repoData != null && repoCount != 0) {

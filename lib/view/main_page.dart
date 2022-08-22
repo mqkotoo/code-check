@@ -13,7 +13,7 @@ class MainPage extends ConsumerStatefulWidget {
 }
 
 class _MainPageState extends ConsumerState<MainPage> {
-  MainPageVM _vm = MainPageVM();
+  final MainPageVM _vm = MainPageVM();
 
   @override
   void initState() {
@@ -30,7 +30,7 @@ class _MainPageState extends ConsumerState<MainPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("GitHub Searcher"),
+        title: const Text("GitHub Searcher"),
       ),
       body: Center(
         child: Column(
@@ -38,24 +38,24 @@ class _MainPageState extends ConsumerState<MainPage> {
           children: [
             searchField(context,
                 onFieldSubmitted: (text) => _vm.onRepositoryDataChanged(text)),
-            Divider(),
+            const Divider(),
 
             (() {
               if (data.value != null && data.value!.total_count != 0) {
                 //resultをカンマ区切りで表示
-                String total_count =
+                String totalCount =
                     NumberFormat('#,##0').format(data.value!.total_count);
                 return Padding(
                   padding: const EdgeInsets.only(right: 10),
                   child: Align(
                     alignment: AlignmentDirectional.centerEnd,
-                    child: SafeArea(child: Text("result: ${total_count}")),
+                    child: SafeArea(child: Text("result: $totalCount")),
                   ),
                 );
               }
               if (data.value != null && data.value!.total_count == 0) {
-                return Padding(
-                  padding: const EdgeInsets.only(right: 10),
+                return const Padding(
+                  padding: EdgeInsets.only(right: 10),
                   child: Align(
                     alignment: AlignmentDirectional.centerEnd,
                     //横画面にした時にノッチで隠れないようにsafeareaで囲む
@@ -75,7 +75,7 @@ class _MainPageState extends ConsumerState<MainPage> {
               child: data.when(
                 data: (data) => ListView.separated(
                     itemCount: data.items.length,
-                    itemBuilder: (context, index) => repositoryListTile(
+                    itemBuilder: (context, index) => RepositoryListTile(
                           fullName: data.items[index].full_name,
                           description: data.items[index].description,
                           onTap: () {
@@ -89,7 +89,7 @@ class _MainPageState extends ConsumerState<MainPage> {
                             );
                           },
                         ),
-                    separatorBuilder: (context, index) => Divider(
+                    separatorBuilder: (context, index) => const Divider(
                           color: Color(0xffBBBBBB),
                         )),
                 error: (error, stack) => Text(error.toString()),

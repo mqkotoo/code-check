@@ -1,8 +1,8 @@
 import 'package:code_check/theme/theme.dart';
 import 'package:flutter/material.dart';
 
-class verDetailElement extends StatelessWidget {
-  const verDetailElement({
+class VerDetailElement extends StatelessWidget {
+  const VerDetailElement({
     Key? key,
     required this.icon,
     required this.elementLabel,
@@ -30,7 +30,7 @@ class verDetailElement extends StatelessWidget {
           ),
           SizedBox(width: size.width * 0.034),
           Text(elementLabel,style: TextStyle(fontSize: size.height * 0.019)),
-          Spacer(),
+          const Spacer(),
           Text(
             element,
             style: TextStyle(fontSize: size.height * 0.019),
@@ -42,8 +42,8 @@ class verDetailElement extends StatelessWidget {
 }
 
 
-class horiDetailElement extends StatelessWidget {
-  const horiDetailElement({
+class HoriDetailElement extends StatelessWidget {
+  const HoriDetailElement({
     Key? key,
     required this.icon,
     required this.elementLabel,
@@ -143,7 +143,7 @@ Widget horiRepositoryDetail(BuildContext context,
             height: size.width * 0.1,
           ),
         ),
-        Container(
+        SizedBox(
           width: size.width * 0.5,
           child: Column(
               children : [

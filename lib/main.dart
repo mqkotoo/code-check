@@ -9,7 +9,7 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   //画面を縦に固定　横向きにならないようにする
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  runApp(ProviderScope(child: const MyApp()));
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       //デバッグバナー消す
       debugShowCheckedModeBanner: false,
-      home: MainPage(),
+      home: const MainPage(),
     );
   }
 }

@@ -1,8 +1,8 @@
 import 'package:code_check/theme/theme.dart';
 import 'package:flutter/material.dart';
 
-class repositoryListTile extends StatelessWidget {
-  const repositoryListTile({
+class RepositoryListTile extends StatelessWidget {
+  const RepositoryListTile({
     Key? key,
     required this.fullName,
     required this.description,
@@ -59,7 +59,7 @@ Widget searchField(BuildContext context,{required void Function(String) onFieldS
     child: TextFormField(
       style: size.height > size.width
           ? TextStyle(fontSize: size.height * 0.016)
-          :TextStyle(),
+          :const TextStyle(),
       //入力キーボードのdone→searchに変更
       textInputAction: TextInputAction.search,
       //search押したらデータ取得

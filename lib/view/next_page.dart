@@ -16,7 +16,7 @@ class DetailPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Repository Detail"),
+        title: const Text("Repository Detail"),
       ),
       body: LayoutBuilder(
         builder: (context, constraints) {
@@ -35,10 +35,10 @@ class DetailPage extends ConsumerWidget {
     RepositoryDataItems? data = _vm.tappedRepository;
 
     // データの数をカンマ区切りで表示
-    String stars_count = NumberFormat('#,##0').format(data.stargazers_count);
-    String watchers_count = NumberFormat('#,##0').format(data.watchers_count);
-    String forks_count = NumberFormat('#,##0').format(data.forks_count);
-    String issues_count = NumberFormat('#,##0').format(data.open_issues_count);
+    String starsCount = NumberFormat('#,##0').format(data.stargazers_count);
+    String watchersCount = NumberFormat('#,##0').format(data.watchers_count);
+    String forksCount = NumberFormat('#,##0').format(data.forks_count);
+    String issuesCount = NumberFormat('#,##0').format(data.open_issues_count);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -48,45 +48,45 @@ class DetailPage extends ConsumerWidget {
             repoTitle: data.full_name,
             repoDescription: data.description,
         ),
-        Divider(),
+        const Divider(),
 
         Padding(
           padding:
           EdgeInsets.symmetric(vertical: size.height * 0.01, horizontal: size.width * 0.06),
           child: Column(
             children: [
-              verDetailElement(
+              VerDetailElement(
                 icon: Icons.language,
                 elementLabel: "Language",
                 element: data.language ?? "No Programing language",
                 iconBackgroundColor: Colors.blueAccent,
                 iconColor: Colors.white,
               ),
-              verDetailElement(
+              VerDetailElement(
                 icon: Icons.star_border,
                 elementLabel: "Star",
-                element: stars_count,
+                element: starsCount,
                 iconBackgroundColor: Colors.yellowAccent,
                 iconColor: Colors.black87,
               ),
-              verDetailElement(
+              VerDetailElement(
                 icon: Icons.remove_red_eye_outlined,
                 elementLabel: "Watch",
-                element: watchers_count,
+                element: watchersCount,
                 iconBackgroundColor: Colors.brown,
                 iconColor: Colors.white,
               ),
-              verDetailElement(
+              VerDetailElement(
                 icon: Icons.fork_right_sharp,
                 elementLabel: "Fork",
-                element: forks_count,
+                element: forksCount,
                 iconBackgroundColor: Colors.purpleAccent,
                 iconColor: Colors.white,
               ),
-              verDetailElement(
+              VerDetailElement(
                 icon: Icons.info_outline,
                 elementLabel: "Issue",
-                element: issues_count,
+                element: issuesCount,
                 iconBackgroundColor: Colors.greenAccent,
                 iconColor: Colors.white,
               ),
@@ -105,10 +105,10 @@ class DetailPage extends ConsumerWidget {
     RepositoryDataItems? data = _vm.tappedRepository;
 
     // データの数をカンマ区切りで表示
-    String stars_count = NumberFormat('#,##0').format(data.stargazers_count);
-    String watchers_count = NumberFormat('#,##0').format(data.watchers_count);
-    String forks_count = NumberFormat('#,##0').format(data.forks_count);
-    String issues_count = NumberFormat('#,##0').format(data.open_issues_count);
+    String starsCount = NumberFormat('#,##0').format(data.stargazers_count);
+    String watchersCount = NumberFormat('#,##0').format(data.watchers_count);
+    String forksCount = NumberFormat('#,##0').format(data.forks_count);
+    String issuesCount = NumberFormat('#,##0').format(data.open_issues_count);
 
     return SingleChildScrollView(
       child: Column(
@@ -119,7 +119,7 @@ class DetailPage extends ConsumerWidget {
               repoTitle: data.full_name,
               repoDescription: data.description,
           ),
-          Divider(),
+          const Divider(),
 
           Padding(
             padding:
@@ -131,24 +131,24 @@ class DetailPage extends ConsumerWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    horiDetailElement(
+                    HoriDetailElement(
                       icon: Icons.language,
                       elementLabel: "Language",
                       element: data.language ?? "No Programing language",
                       iconBackgroundColor: Colors.blueAccent,
                       iconColor: Colors.white,
                     ),
-                    horiDetailElement(
+                    HoriDetailElement(
                       icon: Icons.remove_red_eye_outlined,
                       elementLabel: "Watch",
-                      element: watchers_count,
+                      element: watchersCount,
                       iconBackgroundColor: Colors.brown,
                       iconColor: Colors.white,
                     ),
-                    horiDetailElement(
+                    HoriDetailElement(
                       icon: Icons.info_outline,
                       elementLabel: "Issue",
-                      element: issues_count,
+                      element: issuesCount,
                       iconBackgroundColor: Colors.greenAccent,
                       iconColor: Colors.white,
                     ),
@@ -158,17 +158,17 @@ class DetailPage extends ConsumerWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    horiDetailElement(
+                    HoriDetailElement(
                       icon: Icons.star_border,
                       elementLabel: "Star",
-                      element: stars_count,
+                      element: starsCount,
                       iconBackgroundColor: Colors.yellowAccent,
                       iconColor: Colors.black87,
                     ),
-                    horiDetailElement(
+                    HoriDetailElement(
                       icon: Icons.fork_right_sharp,
                       elementLabel: "Fork",
-                      element: forks_count,
+                      element: forksCount,
                       iconBackgroundColor: Colors.purpleAccent,
                       iconColor: Colors.white,
                     ),
